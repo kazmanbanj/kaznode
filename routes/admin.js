@@ -18,7 +18,7 @@ router.post('/add-product', (req, res, next) => {
     console.log(req.body.title);
     products.push({ title: req.body.title });
     // res.redirect('/');
-    res.render('pug/shop', {prods: products, docTitle: 'Shop'});
+    res.render('pug/shop', {prods: products, docTitle: 'Add product'});
 });
 
 // module.exports = router;

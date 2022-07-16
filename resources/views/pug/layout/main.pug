@@ -1,0 +1,61 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/css/uikit.min.css")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit.min.js") 
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit-icons.min.js") 
+        title #{docTitle}
+
+        block styles
+    body
+        //- header
+        div.uk-container
+            header
+                nav.uk-navbar-container.uk-navbar
+                    div.uk-navbar-left
+                        ul.uk-navbar-nav
+                            li
+                                a(href="/") Kaz
+                                    strong Node
+                    div.uk-navbar-right
+                        ul.uk-navbar-nav.uk-visible(@s)
+                            li
+                                a(href="#") Product
+                                div.uk-navbar-dropdown
+                                    ul.uk-nav.uk-navbar-dropdown-nav
+                                        li
+                                            a(href="/admin/add-product") Add Product
+                                        li
+                                            a(href="#") Item
+                                        li
+                                            a(href="#") Item
+                            li
+                                a.uk-text-large(href="/admin/add-product") Add Product
+                            li
+                                a.uk-text-large(href="https://shubhamjain.co/") blog
+                        a(href="#").uk-navbar-toggle.uk-hidden(@s, uk-navbar-toggle-icon, uk-toggle="target: #sidenav")
+
+            div.uk-offcanvas(uk-offcanvas="flip: true")#sidenav
+                div.uk-offcanvas-bar
+                    ul.uk-nav
+                        li
+                            a(href="#") Product
+                            div.uk-navbar-dropdown
+                                ul.uk-nav.uk-navbar-dropdown-nav
+                                    li
+                                        a(href="/admin/add-product") Add Product
+                                    li
+                                        a(href="#") Item
+                                    li
+                                        a(href="#") Item
+                        li
+                            a.uk-text-large(href="/admin/add-product") Add Product
+                        li
+                            a.uk-text-large(href="https://shubhamjain.co/") blog
+            //- header ends
+
+            block content

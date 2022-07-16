@@ -1,31 +1,21 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/main.css")
-        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/css/uikit.min.css")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit.min.js") 
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit-icons.min.js") 
-        title #{docTitle}
-    body
-        div.uk-container
-            main
-                div.uk-section-large
-                    div.uk-container.uk-container-large
-                        div(uk-grid="").uk-grid-collapse.uk-grid-match.uk-grid.uk-grid-stack
-                            div.uk-width-1-.uk-width-1-3(@s)
-                                div.uk-card.uk-card-default.uk-card-body.uk-text-center
-                                    img(src="https://freefrontend.com/assets/img/html-css-404-page-templates/HTML-404-Page-Animated.png", width="400", alt="")
-                            div.uk-width-1-.uk-width-expand(@s)
-                                div.uk-card.uk-card-primary.uk-card-body.uk-404-card-body
-                                    h3.uk-card-title It looks like you miscalculated something!
-                                    p This is
-                                        code 404 page.
+extends layout/main.pug
 
-                                    div.uk-button-group
-                                        a.uk-button.uk-button-default.uk-button-small(href="javascript:history.back()")
-                                            i.fa.fa-arrow-left Back
-                                                a.uk-button.uk-button-defaul.uk-button-small(href="/")
-                                                    i.fa.fa-home home
+block content
+    main
+        div.uk-section-large
+            div.uk-container.uk-container-large
+                div(uk-grid="").uk-grid-collapse.uk-grid-match.uk-grid.uk-grid-stack
+                    div.uk-width-1-.uk-width-1-3(@s)
+                        div.uk-card.uk-card-default.uk-card-body.uk-text-center
+                            img(src="https://freefrontend.com/assets/img/html-css-404-page-templates/HTML-404-Page-Animated.png", width="400", alt="")
+                    div.uk-width-1-.uk-width-expand(@s)
+                        div.uk-card.uk-card-primary.uk-card-body.uk-404-card-body
+                            h3.uk-card-title It looks like you miscalculated something!
+                            p This is
+                                code 404 page.
+
+                            div.uk-button-group
+                                a.uk-button.uk-button-default.uk-button-small(href="javascript:history.back()")
+                                    i.fa.fa-arrow-left Back
+                                        a.uk-button.uk-button-defaul.uk-button-small(href="/")
+                                            i.fa.fa-home home
