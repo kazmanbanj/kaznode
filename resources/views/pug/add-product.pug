@@ -56,18 +56,13 @@ html(lang="en")
                             a.uk-text-large(href="https://shubhamjain.co/") blog
             //- header ends
 
+            form(action="/admin/add-product", method="POST", class="uk-margin")
+                fieldset.uk-fieldset
 
-            if prods.length > 0
-                div.uk-card.uk-card-default.uk-grid-collapse.uk-child-width-1-2(@s.uk-margin, uk-grid)
-                    each product in prods
-                        div.uk-card-media-left.uk-cover-container
-                            img(src="https://media.istockphoto.com/photos/string-light-bulbs-at-sunset-picture-id1300384615?b=1&k=20&m=1300384615&s=170667a&w=0&h=rkDm5TdJp_dU7VAknk4EuZEZ2ho2QQspOavjlwGrsuI=", alt="", uk-cover)
-                            canvas(width="350", height="150")
-                        div
-                            div.uk-card-body
-                                h3.uk-card-title #{product.title}
-                                p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-            else 
-                h1 No product yet.
+                    legend.uk-legend Add Product(s)
 
+                    div.uk-margin
+                        input.uk-input.uk-form-blank.uk-form-width-medium(type="text", name="title", placeholder="Click to Add Product")
 
+                    button.uk-button.uk-button-primary
+                        span(uk-icon="icon: push")
