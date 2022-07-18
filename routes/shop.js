@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     const products = adminData.products;
 
     // res.render('pug/shop', {prods: products, docTitle: 'Shop'});
-    res.render('handlebars/shop', {prods: products, docTitle: 'Shop'});
+    res.render('handlebars/shop', { prods: products, docTitle: 'Shop', hasProducts: products.length > 0 });
 });
 
 module.exports = router;
