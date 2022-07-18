@@ -11,7 +11,10 @@ router.get('/add-product', (req, res, next) => {
     // res.sendFile(path.join(rootDir, 'resources', 'views', 'add-product.html'));
 
     // res.render('pug/add-product', {docTitle: 'Add product'});
-    res.render('handlebars/add-product', {docTitle: 'Add product'});
+    res.render('handlebars/add-product', {
+        docTitle: 'Add product',
+        activeAddProduct: true
+    });
 });
 
 // /admin/add-product - POST
