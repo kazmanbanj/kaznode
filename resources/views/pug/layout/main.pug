@@ -8,7 +8,7 @@ html(lang="en")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/css/uikit.min.css")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit.min.js") 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit-icons.min.js") 
-        title #{docTitle}
+        title #{pageTitle}
 
         block styles
     body
@@ -19,7 +19,7 @@ html(lang="en")
                     div.uk-navbar-left
                         ul.uk-navbar-nav
                             li
-                                a(href="/") Kaz
+                                a(href="/", class=(path === "/" ? "uk-active" : "")) Kaz
                                     strong Node
                     div.uk-navbar-right
                         ul.uk-navbar-nav.uk-visible(@s)
@@ -28,13 +28,13 @@ html(lang="en")
                                 div.uk-navbar-dropdown
                                     ul.uk-nav.uk-navbar-dropdown-nav
                                         li
-                                            a(href="/admin/add-product") Add Product
+                                            a(href="/admin/add-product", class=(path === "/admin/add-product" ? "uk-active" : "")) Add Product
                                         li
                                             a(href="#") Item
                                         li
                                             a(href="#") Item
                             li
-                                a.uk-text-large(href="/admin/add-product") Add Product
+                                a.uk-text-large(href="/admin/add-product", class=(path === "/admin/add-product" ? "uk-active" : "")) Add Product
                             li
                                 a.uk-text-large(href="https://shubhamjain.co/") blog
                         a(href="#").uk-navbar-toggle.uk-hidden(@s, uk-navbar-toggle-icon, uk-toggle="target: #sidenav")
@@ -47,13 +47,13 @@ html(lang="en")
                             div.uk-navbar-dropdown
                                 ul.uk-nav.uk-navbar-dropdown-nav
                                     li
-                                        a(href="/admin/add-product") Add Product
+                                        a(href="/admin/add-product", class=(path === "/admin/add-product" ? "uk-active" : "")) Add Product
                                     li
                                         a(href="#") Item
                                     li
                                         a(href="#") Item
                         li
-                            a.uk-text-large(href="/admin/add-product") Add Product
+                            a.uk-text-large(href="/admin/add-product", class=(path === "/admin/add-product" ? "uk-active" : "")) Add Product
                         li
                             a.uk-text-large(href="https://shubhamjain.co/") blog
             //- header ends
