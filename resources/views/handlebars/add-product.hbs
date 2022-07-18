@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/css/uikit.min.css"/>
+
+        <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit-icons.min.js"></script>
+        <title>{{ docTitle }}</title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+        <div class="uk-container">
+
+            <!-- header -->
+            <header>
+                <!-- Main Navbar -->
+                <nav class="uk-navbar-container" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active">
+                                <a href="/">Kaz<strong>Node</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav uk-visible@s">
+                            <li>
+                                <a href="#">Product</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li class="uk-active"><a href="/admin/add-product">Add Product</a></li>
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="uk-text-large" href="/admin/add-product">Add Product</a></li>
+                            <li><a class="uk-text-large" href="https://shubhamjain.co/">blog</a></li>
+                        </ul>
+                        <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+                    </div>
+                </nav>
+            </header>
+            <div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+                <div class="uk-offcanvas-bar">
+                    <ul class="uk-nav">
+                        <li>
+                            <a href="#">Product</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="/admin/add-product">Add Product</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="uk-text-large" href="/admin/add-product">Add Product</a></li>
+                        <li><a class="uk-text-large" href="https://shubhamjain.co/">blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- header end -->
+
+            <!-- <main> -->
+                <form action="/admin/add-product" method="POST" class="uk-margin">
+                    <fieldset class="uk-fieldset">
+
+                        <legend class="uk-legend">Add Product(s)</legend>
+
+                        <div class="uk-margin">
+                            <input class="uk-input uk-form-blank uk-form-width-medium" type="text" name="title" placeholder="Click to Add Product">
+                        </div>
+
+                        <button class="uk-button uk-button-primary">
+                            <span uk-icon="icon: push"></span>
+                        </button>
+
+                    </fieldset>
+                </form>
+            <!-- </main> -->
+
+        </div>
+    </body>
+</html>
