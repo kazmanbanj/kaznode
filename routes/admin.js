@@ -11,7 +11,8 @@ router.get('/add-product', (req, res, next) => {
     // res.sendFile(path.join(rootDir, 'resources', 'views', 'add-product.html'));
 
     // res.render('pug/add-product', {docTitle: 'Add product'});
-    res.render('handlebars/add-product', {docTitle: 'Add product'});
+    // res.render('handlebars/add-product', {docTitle: 'Add product'});
+    res.render('ejs/add-product', {docTitle: 'Add product'});
 });
 
 // /admin/add-product - POST
@@ -22,7 +23,8 @@ router.post('/add-product', (req, res, next) => {
     // res.redirect('/');
 
     // res.render('pug/shop', {prods: products, docTitle: 'Add product'});
-    res.render('handlebars/shop', {prods: products, docTitle: 'Add product'});
+    // res.render('handlebars/shop', {prods: products, docTitle: 'Add product'});
+    res.render('ejs/shop', {prods: products, docTitle: 'Add product'});
 });
 
 // module.exports = router;
