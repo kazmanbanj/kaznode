@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/css/uikit.min.css"/>
+
+        <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit-icons.min.js"></script>
+        <title><%= docTitle %></title>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+        <div class="uk-container">
+
+            <!-- header -->
+            <header>
+                <!-- Main Navbar -->
+                <nav class="uk-navbar-container" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active">
+                                <a href="/">Kaz<strong>Node</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav uk-visible@s">
+                            <li>
+                                <a href="#">Product</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li class="uk-active"><a href="/admin/add-product">Add Product</a></li>
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="uk-text-large" href="/admin/add-product">Add Product</a></li>
+                            <li><a class="uk-text-large" href="https://shubhamjain.co/">blog</a></li>
+                        </ul>
+                        <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+                    </div>
+                </nav>
+            </header>
+            <div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+                <div class="uk-offcanvas-bar">
+                    <ul class="uk-nav">
+                        <li>
+                            <a href="#">Product</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="/admin/add-product">Add Product</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="uk-text-large" href="/admin/add-product">Add Product</a></li>
+                        <li><a class="uk-text-large" href="https://shubhamjain.co/">blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- header end -->
+
+            <% if (prods.length > 0) { %>
+
+                    <% for (let product of prods) { %>
+                    
+                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                        <div class="uk-card-media-left uk-cover-container">
+                            <img src="https://media.istockphoto.com/photos/string-light-bulbs-at-sunset-picture-id1300384615?b=1&k=20&m=1300384615&s=170667a&w=0&h=rkDm5TdJp_dU7VAknk4EuZEZ2ho2QQspOavjlwGrsuI=" alt="" uk-cover>
+                            <canvas width="600" height="400"></canvas>
+                        </div>
+                        <div>
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title"><%= product.title %> </h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                        <div class="uk-flex-last@s uk-card-media-right uk-cover-container" >
+                            <img src="https://media.istockphoto.com/photos/string-light-bulbs-at-sunset-picture-id1300384615?b=1&k=20&m=1300384615&s=170667a&w=0&h=rkDm5TdJp_dU7VAknk4EuZEZ2ho2QQspOavjlwGrsuI=" alt="" uk-cover>
+                            <canvas width="600" height="400"></canvas>
+                        </div>
+                        <div>
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Media Right</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                <% } %>
+            <% } else { %>
+                <h1>No product found</h1>
+            <% } %>
+        </div>
+    </body>
+</html>
