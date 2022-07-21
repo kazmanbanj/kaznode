@@ -1,0 +1,49 @@
+            <!-- header -->
+            <header>
+                <!-- Main Navbar -->
+                <nav class="uk-navbar-container" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <ul class="uk-navbar-nav">
+                            <li class="<%= path === '/' ? 'uk-active' : '' %>">
+                                <a href="/">Kaz<strong>Node</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav uk-visible@s">
+                            <li>
+                                <a href="#">Product</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>"><a href="/admin/add-product">Add Product</a></li>
+                                        <li><a href="#">Item</a></li>
+                                        <li><a href="#">Item</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="uk-text-large" href="/admin/add-product">Add Product</a></li>
+                            <li><a class="uk-text-large" href="https://shubhamjain.co/">blog</a></li>
+                        </ul>
+                        <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+                    </div>
+                </nav>
+            </header>
+            <div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+                <div class="uk-offcanvas-bar">
+                    <ul class="uk-nav">
+                        <li>
+                            <a href="#">Product</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>"><a href="/admin/add-product">Add Product</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="uk-text-large" href="/admin/add-product">Add Product</a></li>
+                        <li><a class="uk-text-large" href="https://shubhamjain.co/">blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- header end -->

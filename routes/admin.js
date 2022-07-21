@@ -12,7 +12,10 @@ router.get('/add-product', (req, res, next) => {
 
     // res.render('pug/add-product', {docTitle: 'Add product'});
     // res.render('handlebars/add-product', {docTitle: 'Add product'});
-    res.render('ejs/add-product', {docTitle: 'Add product'});
+    res.render('ejs/add-product', {
+        docTitle: 'Add product',
+        path: 'admin/add-product'
+    });
 });
 
 // /admin/add-product - POST
@@ -24,7 +27,11 @@ router.post('/add-product', (req, res, next) => {
 
     // res.render('pug/shop', {prods: products, docTitle: 'Add product'});
     // res.render('handlebars/shop', {prods: products, docTitle: 'Add product'});
-    res.render('ejs/shop', {prods: products, docTitle: 'Add product'});
+    res.render('ejs/shop', {
+        prods: products,
+        docTitle: 'Add product',
+        path: 'admin/add-product'
+    });
 });
 
 // module.exports = router;
