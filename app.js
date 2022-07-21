@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const {engine} = require('express-handlebars'); for hbs
 
+const errorController = require('./controllers/error');
+
 const app = express();
 
 // app.engine('hbs', engine({ extname: "hbs", defaultLayout: false })); for hbs
@@ -22,12 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-    // res.status(404).sendFile(path.join(__dirname, 'resources', 'views', 'html', '404.html'));
-
-    // res.status(404).render('pug/404', {docTitle: 'Page not found'});
-    // res.status(404).render('handlebars/404', {docTitle: 'Page not found'});
-    res.status(404).render('ejs/404', {docTitle: 'Page not found'});
-});
+app.use(errorController.get404);
 
 app.listen(3000)
