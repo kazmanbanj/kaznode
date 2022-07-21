@@ -20,18 +20,9 @@ router.get('/add-product', (req, res, next) => {
 
 // /admin/add-product - POST
 router.post('/add-product', (req, res, next) => {
-    console.log(req.body.title);
+    // console.log(req.body.title);
     products.push({ title: req.body.title });
-    // console.log(products);
-    // res.redirect('/');
-
-    // res.render('pug/shop', {prods: products, docTitle: 'Add product'});
-    // res.render('handlebars/shop', {prods: products, docTitle: 'Add product'});
-    res.render('ejs/shop', {
-        prods: products,
-        docTitle: 'Add product',
-        path: 'admin/add-product'
-    });
+    res.redirect('/');
 });
 
 // module.exports = router;
