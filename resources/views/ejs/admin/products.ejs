@@ -1,8 +1,50 @@
-<%- include('../includes/head.ejs') %>
-<%- include('../includes/header.ejs') %>
+<%- include('../includes/head.ejs') %> 
+<%- include('../includes/header.ejs') %> 
 
+    <% if (prods.length > 0) { %>
 
+        <% for (let product of prods) { %>
+            
+            <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                <div class="uk-card-media-left uk-cover-container">
+                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>" uk-cover>
+                    <canvas width="600" height="400"></canvas>
+                </div>
+                <div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title"><%= product.title %> </h3>
+                        <h4><span class="uk-text-background">&#8358;<%= product.price %></span></h4>
+                        <p><%= product.description %></p>
+                    </div>
+                    
+                    <div  class="uk-card-body uk-flex">
+                        <p class="">
+                            <a class="uk-button uk-button-secondary" href="/admin/edit-product">Edit</a>
+                        </p>
+                        <form action="/admin/delete-product" method="post" class="uk-margin-small-left">
+                            <button class="uk-button uk-button-danger" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                <div class="uk-flex-last@s uk-card-media-right uk-cover-container" >
+                    <img src="https://media.istockphoto.com/photos/string-light-bulbs-at-sunset-picture-id1300384615?b=1&k=20&m=1300384615&s=170667a&w=0&h=rkDm5TdJp_dU7VAknk4EuZEZ2ho2QQspOavjlwGrsuI=" alt="" uk-cover>
+                    <canvas width="600" height="400"></canvas>
+                </div>
+                <div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">Media Right</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
+            </div> -->
 
+        <% } %>
+    <% } else { %>
+        <h1>No product found</h1>
+    <% } %>
 
 
 <%- include('../includes/foot.ejs') %>
