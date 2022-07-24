@@ -24,14 +24,11 @@
                         </ul>
                     </div>
                 </li>
-                <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>">
-                    <a class="uk-text-large" href="/admin/add-product">Add Product</a>
-                </li>
-                <li class="<%= path === '/products' ? 'uk-active' : '' %>">
-                    <a class="uk-text-large" href="/products">Products</a>
-                </li>
                 <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/cart">Cart</a>
+                </li>
+                <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/orders">Orders</a>
                 </li>
                 <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/admin/products">Admin Products</a>
@@ -64,7 +61,10 @@
                 <a class="uk-text-large" href="/products">Products</a>
             </li>
             <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/cart">My Cart</a>
+                <a class="uk-text-large" href="/cart">Cart</a>
+            </li>
+            <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
+                <a class="uk-text-large" href="/orders">Orders</a>
             </li>
             <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
                 <a class="uk-text-large" href="/admin/products">Admin Products</a>

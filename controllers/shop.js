@@ -23,7 +23,7 @@ exports.getProducts = (req, res, next) => {
 exports.getCart = (req, res, next) => {
     res.render('ejs/shop/cart', {
         path: '/cart',
-        docTitle: 'Your cart'
+        docTitle: 'Your Cart'
     })
 }
 
@@ -31,5 +31,12 @@ exports.getCheckout = (req, res, next) => {
     res.render('ejs/shop/checkout', {
         docTitle: 'Checkout',
         path: '/checkout'
+    })
+}
+
+exports.getOrders = (req, res, next) => {
+    res.render('ejs/shop/orders', {
+        docTitle: 'Your Orders',
+        path: '/orders'
     })
 }
