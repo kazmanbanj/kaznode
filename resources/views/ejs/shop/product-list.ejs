@@ -16,9 +16,10 @@
                         <h4><span class="uk-text-background">&#8358;<%= product.price %></span></h4>
                         <p><%= product.description %></p>
                     </div>
-                    
+
                     <div  class="uk-card-body">
                         <form action="/add-to-cart" method="post">
+                            <a href="/products/<%= product.id %>" class="uk-button uk-button-secondary">Details</a>
                             <button class="uk-button uk-button-primary" type="submit">Add to Cart</button>
                         </form>
                     </div>
