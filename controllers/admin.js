@@ -19,6 +19,27 @@ exports.postAddProducts = (req, res, next) => {
     res.redirect('/');
 };
 
+exports.getEditProduct = (req, res, next) => {
+    // const editMode = req.query.edit;
+    // if (!editMode) {
+    //     return res.redirect('/');
+    // }
+
+    const prodId = req.params.productId;
+    Product.findById(prodId, product => {
+        if (!product) {
+            return res.redirect('/');
+        }
+
+        res.render('ejs/admin/edit-product', {
+            docTitle: 'Edit product',
+            path: '/admin/edit-product',
+            // editing: editMode,
+            product: product
+        });
+    })
+};
+
 exports.getProducts = (req, res, next) => {
     Product.fetchAll(products => {
         res.render('ejs/admin/products', {

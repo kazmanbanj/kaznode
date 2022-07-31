@@ -1,8 +1,32 @@
-<%- include('../includes/head.ejs') %>
-<%- include('../includes/header.ejs') %>
+<%- include('../includes/head.ejs') %> 
+<%- include('../includes/header.ejs') %> 
 
+<form action="/admin/add-product" method="POST" class="">
+    <fieldset class="uk-fieldset">
 
+        <legend class="uk-legend">Add Product(s)</legend>
 
+        <div class="uk-margin">
+            <input class="uk-input uk-form-blank uk-form-width-large" type="text" name="title" placeholder="Click to Add Product">
+        </div>
+    
+        <div class="uk-margin">
+            <input class="uk-input uk-form-blank uk-form-width-large" type="text" name="imageUrl" placeholder="Click to Add Image Url">
+        </div>
 
+        <div class="uk-margin">
+            <input class="uk-input uk-form-blank uk-form-width-large" type="number" name="price" placeholder="Click to Add Price" step="0.01">
+        </div>
 
-<%- include('../includes/foot.ejs') %>
+        <div class="uk-margin">
+            <textarea class="uk-textarea uk-form-blank uk-form-width-large" rows="5" name="description" id="description" placeholder="Description"></textarea>
+        </div>
+
+        <button class="uk-button uk-button-primary">
+            <span uk-icon="icon: push"></span>
+        </button>
+
+    </fieldset>
+</form>
+
+<%- include('../includes/foot.ejs') %> 
