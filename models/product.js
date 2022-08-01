@@ -32,10 +32,9 @@ module.exports = class Product {
                 const existingProductIndex = products.findIndex(prod => prod.id === this.id);
                 const updatedProducts = [...products];
                 updatedProducts[existingProductIndex] = this;
-
                 fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
                     if (err) console.log(err);
-                    console.log('The file has been saved!');
+                    console.log('The file has been saved2!');
                 });
             } else {
                 this.id = Math.random().toString();

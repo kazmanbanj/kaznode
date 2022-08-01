@@ -1,6 +1,6 @@
 const Product = require('../models/product');
 
-exports.getAddProducts = (req, res, next) => {
+exports.getAddProduct = (req, res, next) => {
     res.render('ejs/admin/edit-product', {
         docTitle: 'Add product',
         path: '/admin/add-product',
@@ -8,7 +8,7 @@ exports.getAddProducts = (req, res, next) => {
     });
 };
 
-exports.postAddProducts = (req, res, next) => {
+exports.postAddProduct = (req, res, next) => {
     const title = req.body.title;
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
@@ -44,8 +44,8 @@ exports.getEditProduct = (req, res, next) => {
 exports.postEditProduct = (req, res, next) => {
     const prodId = req.body.productId;
     const updatedTitle = req.body.title;
-    const updatedImageUrl = req.body.imageUrl;
     const updatedPrice = req.body.price;
+    const updatedImageUrl = req.body.imageUrl;
     const updatedDesc = req.body.description;
     const updatedProduct = new Product(prodId, updatedTitle, updatedImageUrl, updatedPrice, updatedDesc);
     updatedProduct.save();
