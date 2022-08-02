@@ -4,15 +4,22 @@
 <% if (products.length > 0) { %>
 
     <div class="uk-child-width-expand@s" uk-grid>
-    
+
         <div>
             <ul class="uk-list uk-list-large uk-list-striped">
                 <% products.forEach(p => { %>
-                    <li><%= p.productData.title %> (<%= p.qty %>)</li>
+                    <li>
+                        <p><%= p.productData.title %> (<%= p.qty %>)</p>
+
+                        <form action="/cart-delete-item" method="post" class="uk-margin-small-left">
+                            <input type="hidden" name="productId" value="<%= p.productData.id %>">
+                            <button class="uk-button uk-button-danger" type="submit">Delete</button>
+                        </form>
+                    </li>
                 <% }) %>
             </ul>
         </div>
-    
+
     </div>
 
 <% } else { %>
