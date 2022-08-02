@@ -1,8 +1,24 @@
 <%- include('../includes/head.ejs') %>
 <%- include('../includes/header.ejs') %>
+<main>
+<% if (products.length > 0) { %>
+
+    <div class="uk-child-width-expand@s" uk-grid>
+    
+        <div>
+            <ul class="uk-list uk-list-large uk-list-striped">
+                <% products.forEach(p => { %>
+                    <li><%= p.productData.title %> (<%= p.qty %>)</li>
+                <% }) %>
+            </ul>
+        </div>
+    
+    </div>
+
+<% } else { %>
+    <h1>No Product in Cart!</h1>
+<% } %>
 
 
-
-
-
+</main>
 <%- include('../includes/foot.ejs') %>
