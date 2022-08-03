@@ -2,12 +2,16 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getIndex = (req, res, next) => {
-    Product.fetchAll(products => {
+    Product.fetchAll()
+    .then(fieldData => {
         res.render('ejs/shop/index', {
-            prods: products,
+            prods: fieldData,
             docTitle: 'Shop',
             path: '/'
         });
+    })
+    .catch(err => {
+        console.log(err);
     });
 };
 
