@@ -31,13 +31,17 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
     const prodId = req.params.productId;
-    Product.findById(prodId, product => {
+    Product.findById(prodId)
+    .then(([product]) => {
         res.render('ejs/shop/product-detail', {
-            product: product,
+            product: product[0],
             path: '/products',
             docTitle: product.title
         });
     })
+    .catch((err) => {
+        console.log(err);
+    });
 }
 
 exports.getCart = (req, res, next) => {
