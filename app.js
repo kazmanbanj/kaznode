@@ -4,10 +4,12 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 
-// using sequelize
+// using sequelize to manage data in the database
 const sequelize = require('./utils/database');
 const Product = require('./models/product');
 const User = require('./models/user');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 // using the expressJs
 const app = express();
@@ -23,11 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // retrieving a user
 app.use((req, res, next) => {
     User.findByPk(1)
-        .then(user => {
-            req.user = user;
-            next();
-        })
-        .catch(err => console.log(err));
+    .then(user => {
+        req.user = user;
+        next();
+    })
+    .catch(err => console.log(err));
 })
 
 // app.use('/admin', adminData.routes);
@@ -38,10 +40,14 @@ app.use(errorController.get404);
 
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, {through: CartItem});
+Product.belongsToMany(Cart, {through: CartItem});
 
 sequelize
-    // .sync({force: true})
-    .sync()
+    .sync({force: true})
+    // .sync()
     .then(result => {
         return User.findByPk(1);
     })
