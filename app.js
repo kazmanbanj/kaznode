@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 
-// using sequelize
+// using sequelize to manage data in the database
 const sequelize = require('./utils/database');
 const Product = require('./models/product');
 const User = require('./models/user');
@@ -23,11 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // retrieving a user
 app.use((req, res, next) => {
     User.findByPk(1)
-        .then(user => {
-            req.user = user;
-            next();
-        })
-        .catch(err => console.log(err));
+    .then(user => {
+        req.user = user;
+        next();
+    })
+    .catch(err => console.log(err));
 })
 
 // app.use('/admin', adminData.routes);
