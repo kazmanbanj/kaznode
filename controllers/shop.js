@@ -41,7 +41,6 @@ exports.getProduct = (req, res, next) => {
 exports.getCart = (req, res, next) => {
     req.user.getCart()
     .then(cart => {
-        // console.log(cart);
         return cart.getProducts()
         .then(cartProducts => {
             res.render('ejs/shop/cart', {
@@ -111,6 +110,17 @@ exports.getCheckout = (req, res, next) => {
         docTitle: 'Checkout',
         path: '/checkout'
     })
+}
+
+exports.postOrder = (req, res, next) => {
+    req.user.getCart()
+    .then(cart => {
+        return cart.getProducts();
+    })
+    .then(products => {
+        console.log(products);
+    })
+    .catch(err => console.log(err));
 }
 
 exports.getOrders = (req, res, next) => {
