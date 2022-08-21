@@ -1,5 +1,6 @@
 // const Sequelize = require('sequelize');
 // const sequelize = require('../utils/database');
+const mongodb = require('mongodb');
 const getDb = require('../utils/database').getDb;
 
 class Product {
@@ -31,6 +32,21 @@ class Product {
         .then(products => {
             console.log(products);
             return products;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    static findByPk(prodId) {
+        const db = getDb();
+        return db
+        .collection('products')
+        .find({_id: new mongodb.ObjectId(prodId)})
+        .next()
+        .then(product => {
+            console.log(product);
+            return product;
         })
         .catch(err => {
             console.log(err);
