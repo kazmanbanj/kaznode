@@ -19,10 +19,10 @@
 
                     <div  class="uk-card-body uk-flex">
                         <p class="">
-                            <a class="uk-button uk-button-secondary" href="/admin/edit-product/<%= product.id %>?edit=true">Edit</a>
+                            <a class="uk-button uk-button-secondary" href="/admin/edit-product/<%= product._id %>?edit=true">Edit</a>
                         </p>
                         <form action="/admin/delete-product" method="post" class="uk-margin-small-left">
-                            <input type="hidden" name="productId" value="<%= product.id %>">
+                            <input type="hidden" name="productId" value="<%= product._id %>">
                             <button class="uk-button uk-button-danger" type="submit">Delete</button>
                         </form>
                     </div>
