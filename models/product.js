@@ -4,19 +4,19 @@ const mongodb = require('mongodb');
 const getDb = require('../utils/database').getDb;
 
 class Product {
-    constructor(title, price, description, imageUrl, _id) {
+    constructor(title, price, description, imageUrl, id) {
         this.title = title;
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
-        this._id = new mongodb.ObjectId(_id);
+        this._id = id;
     }
 
     save() {
         const db = getDb();
         let dbOperation;
         if (this._id) {
-            dbOperation = db.collection('products').updateOne({_id: this._id}, {$set: this});
+            dbOperation = db.collection('products').updateOne({_id: new mongodb.ObjectId(this._id) }, {$set: this});
         } else {
             dbOperation = db.collection('products').insertOne(this);
         }
@@ -51,7 +51,7 @@ class Product {
         .find({_id: new mongodb.ObjectId(prodId)})
         .next()
         .then(product => {
-            // console.log(product);
+            console.log('productss', product);
             return product;
         })
         .catch(err => {

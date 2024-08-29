@@ -1,7 +1,7 @@
-// const mongodb = require('mongodb');
+const mongodb = require('mongodb');
 const Product = require('../models/product');
 
-// const ObjectId = mongodb.ObjectId;
+const ObjectId = mongodb.ObjectId;
 
 exports.getAddProduct = (req, res, next) => {
     res.render('ejs/admin/edit-product', {
@@ -52,10 +52,10 @@ exports.postEditProduct = (req, res, next) => {
     const prodId = req.body.productId;
     const updatedTitle = req.body.title;
     const updatedPrice = req.body.price;
-    const updatedDesc = req.body.description;
     const updatedImageUrl = req.body.imageUrl;
-    const product = new Product(updatedTitle, updatedPrice, updatedDesc, updatedImageUrl, prodId);
-    // console.log(updatedPrice);
+    const updatedDesc = req.body.description;
+    
+    const product = new Product(updatedTitle, updatedPrice, updatedDesc, updatedImageUrl, new ObjectId(prodId));
     product.save()
     .then(result => {
         console.log('Updated product!');
@@ -76,15 +76,15 @@ exports.getProducts = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-// exports.postDeleteProduct = (req, res, next) => {
-//     const prodId = req.body.productId;
-//     Product.findByPk(prodId)
-//     .then(product => {
-//         return product.destroy();
-//     })
-//     .then((result) => {
-//         console.log('Product deleted');
-//         res.redirect('/admin/products');
-//     })
-//     .catch(err => console.log(err));
-// };
+exports.postDeleteProduct = (req, res, next) => {
+    const prodId = req.body.productId;
+    Product.findByPk(prodId)
+    .then(product => {
+        return product.destroy();
+    })
+    .then((result) => {
+        console.log('Product deleted');
+        res.redirect('/admin/products');
+    })
+    .catch(err => console.log(err));
+};
