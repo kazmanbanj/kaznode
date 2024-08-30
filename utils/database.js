@@ -13,6 +13,10 @@ const MongoClient = mongodb.MongoClient;
 let _db;
 const dbUrl = process.env.DB_URL;
 
+if (!dbUrl) {
+    throw new Error('Missing required environment variables');
+}
+
 const mongoConnect = (callback) => {
     MongoClient.connect(`${dbUrl}`)
     .then(client => {
