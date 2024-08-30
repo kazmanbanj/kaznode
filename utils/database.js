@@ -7,13 +7,14 @@
 
 // module.exports = sequelize;
 
-
+require('dotenv').config();
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 let _db;
+const dbUrl = process.env.DB_URL;
 
 const mongoConnect = (callback) => {
-    MongoClient.connect('mongodb+srv://root:root@cluster0.hb1qwky.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0')
+    MongoClient.connect(`${dbUrl}`)
     .then(client => {
         console.log('Connected');
         console.log(client);
