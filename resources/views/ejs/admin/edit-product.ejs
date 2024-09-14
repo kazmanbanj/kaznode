@@ -11,7 +11,7 @@
         </div>
 
         <div class="uk-margin">
-            <input class="uk-input uk-form-blank uk-form-width-large" type="text" name="imageUrl" placeholder="Click to Add Image Url" value="<% if (editing) { %><%=product.imageUrl%><% } %>">
+            <textarea class="uk-textarea uk-form-blank uk-form-width-large" rows="5" name="description" placeholder="Description"><% if (editing) { %><%=product.description%><% } %></textarea>
         </div>
 
         <div class="uk-margin">
@@ -19,11 +19,12 @@
         </div>
 
         <div class="uk-margin">
-            <textarea class="uk-textarea uk-form-blank uk-form-width-large" rows="5" name="description" id="description" placeholder="Description"><% if (editing) { %><%=product.description%><% } %></textarea>
+            <input class="uk-input uk-form-blank uk-form-width-large" type="text" name="imageUrl" placeholder="Click to Add Image Url" value="<% if (editing) { %><%=product.imageUrl%><% } %>">
         </div>
 
+
         <% if (editing) { %>
-            <input type="hidden" name="productId" value="<%=product._id%> ">
+            <input type="hidden" value="<%=product._id%>" name="productId" >
         <% } %>
 
         <button class="uk-button uk-button-primary">
@@ -31,6 +32,7 @@
                 Update Product
             <% } else { %>
                 <span uk-icon="icon: push"></span>
+                Add Product
             <% } %>
         </button>
 

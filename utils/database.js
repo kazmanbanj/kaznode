@@ -7,17 +7,23 @@
 
 // module.exports = sequelize;
 
-
+require('dotenv').config();
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 let _db;
+const dbUrl = process.env.DB_URL;
+
+if (!dbUrl) {
+    throw new Error('Missing required environment variables');
+}
 
 const mongoConnect = (callback) => {
-    MongoClient.connect('mongodb+srv://root:root@cluster0.hb1qwky.mongodb.net/shop?retryWrites=true&w=majority')
+    MongoClient.connect(`${dbUrl}`)
     .then(client => {
         console.log('Connected');
+        console.log(client);
         _db = client.db();
-        callback()
+        callback();
     })
     .catch(err => {
         console.log(err);
