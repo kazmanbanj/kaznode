@@ -17,6 +17,8 @@ const errorController = require('./controllers/error');
 // using mongodb to manage data in the database
 const mongoConnect = require('./utils/database').mongoConnect;
 
+const User = require('./models/user');
+
 // using the expressJs
 const app = express();
 app.set('view engine', 'ejs');
@@ -31,14 +33,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // retrieving a user
 app.use((req, res, next) => {
-    // User.findByPk(1)
-    // .then(user => {
-    //     req.user = user;
-    //     next();
-    // })
-    // .catch(err => console.log(err));
+    User.findById("66e5a0faf4aaef962ffae47c")
+    .then(user => {
+        req.user = user;
+        next();
+    })
+    .catch(err => console.log(err));
 
-    next();
+    // next();
 })
 
 // used by sequelize
