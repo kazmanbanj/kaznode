@@ -1,6 +1,8 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
 
@@ -15,7 +17,7 @@ const errorController = require('./controllers/error');
 
 
 // using mongodb to manage data in the database
-const mongoConnect = require('./utils/database').mongoConnect;
+// const mongoConnect = require('./utils/database').mongoConnect;
 
 const User = require('./models/user');
 
@@ -33,9 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // retrieving a user
 app.use((req, res, next) => {
-    User.findById("66e674cbf4aaef962ffae492")
+    User.findById("66e6ee269037c39b55aa593b")
     .then(user => {
-        req.user = new User(user.name, user.email, user.cart, user._id);
+        req.user = user;
         next();
     })
     .catch(err => console.log(err));
@@ -80,6 +82,33 @@ app.use(errorController.get404);
 // .catch(err => console.log(err));
 
 
-mongoConnect(() => {
-    app.listen(3000);
-});
+// mongoConnect(() => {
+//     app.listen(3000);
+// });
+const dbUrl = process.env.MONGO_URI;
+
+if (!dbUrl) {
+    throw new Error('Missing required environment variables');
+}
+
+mongoose.connect(`${dbUrl}`)
+    .then(result => {
+        User.findById("66e6ee269037c39b55aa593b")
+        .then(user => {
+            if (!user) {
+                const user = new User({
+                    name: 'Kaz',
+                    email: 'kaz@email.com',
+                    cart: {
+                        items: []
+                    }
+                });
+                user.save();
+            }
+        });
+
+        app.listen(3000);
+    })
+    .catch(err => {
+        console.log(err);
+    });
