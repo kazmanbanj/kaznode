@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // retrieving a user
 app.use((req, res, next) => {
-    User.findById("66e5a0faf4aaef962ffae47c")
+    User.findById("66e674cbf4aaef962ffae492")
     .then(user => {
         req.user = new User(user.name, user.email, user.cart, user._id);
         next();
