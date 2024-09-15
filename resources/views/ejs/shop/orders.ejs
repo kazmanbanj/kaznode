@@ -5,14 +5,14 @@
     <% if(orders.length <= 0) { %>
         No orders yet!
     <% } else { %>
-        <ul class="uk-list uk-list-large uk-list-divider">
+        <ul class="uk-list uk-list-divider uk-list-collapse">
             <% orders.forEach(order => { %>
                 <li>
                     <h1>Order - # <%= order._id %></h1>
 
-                    <ul class="uk-list uk-list-large uk-list-striped">
-                        <% order.items.forEach(product => { %>
-                            <li><%= product.title %> (<%= product.quantity %>)</li>
+                    <ul class="uk-list uk-list-divider uk-list-collapse">
+                        <% order.products.forEach(p => { %>
+                            <li><%= p.product.title %> (<%= p.quantity %>)</li>
                         <% }); %>
                     </ul>
                 </li>
