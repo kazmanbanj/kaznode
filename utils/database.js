@@ -21,7 +21,7 @@ const mongoConnect = (callback) => {
     MongoClient.connect(`${dbUrl}`)
     .then(client => {
         console.log('Connected');
-        console.log(client);
+        // console.log(client);
         _db = client.db();
         callback();
     })

@@ -6,10 +6,10 @@
     <div class="uk-child-width-expand@s" uk-grid>
 
         <div>
-            <ul class="uk-list uk-list-large uk-list-striped">
+            <ul class="uk-list uk-list-large uk-list-divider">
                 <% products.forEach(p => { %>
                     <li>
-                        <p><%= p.title %> (<%= p.cartItem.quantity %>)</p>
+                        <p><%= p.title %> (<%= p.quantity %>)</p>
 
                         <form action="/cart-delete-item" method="post" class="uk-margin-small-left">
                             <input type="hidden" name="productId" value="<%= p._id %>">
