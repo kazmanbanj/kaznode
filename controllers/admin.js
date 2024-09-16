@@ -99,8 +99,7 @@ exports.getProducts = (req, res, next) => {
         res.render('ejs/admin/products', {
             prods: products,
             docTitle: 'Admin products',
-            path: '/admin/products',
-            isAuthenticated: req.session.isLoggedIn
+            path: '/admin/products'
         });
     })
     .catch(err => console.log(err));

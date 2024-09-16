@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const csrf = require('csurf');
 
 const errorController = require('./controllers/error');
 
@@ -25,6 +26,8 @@ const store = new MongoDBStore({
     // expires:
 });
 
+const csrfProtection = csrf();
+
 app.set('view engine', 'ejs');
 app.set('views', 'resources/views');
 
@@ -37,6 +40,7 @@ app.use(session({
     store: store
     // cookie: {}
 }));
+app.use(csrfProtection);
 
 // retrieving a user
 app.use((req, res, next) => {
@@ -50,6 +54,13 @@ app.use((req, res, next) => {
         })
         .catch(err => console.log(err));
     }
+});
+
+// making a variable available in all views
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.csrfToken = req.csrfToken();
+    next();
 });
 
 app.use('/admin', adminRoutes);

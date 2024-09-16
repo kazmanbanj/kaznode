@@ -2,6 +2,7 @@
 <%- include('../includes/header.ejs') %>
 
 <form action="/login" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <fieldset class="uk-fieldset">
 
         <legend class="uk-legend">Login</legend>
