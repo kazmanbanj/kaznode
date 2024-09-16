@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
+const flash = require('connect-flash');
 
 const errorController = require('./controllers/error');
 
@@ -41,6 +42,7 @@ app.use(session({
     // cookie: {}
 }));
 app.use(csrfProtection);
+app.use(flash());
 
 // retrieving a user
 app.use((req, res, next) => {
@@ -60,6 +62,13 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.isLoggedIn;
     res.locals.csrfToken = req.csrfToken();
+
+    let globalErrorMessage = req.flash('error');
+    if (globalErrorMessage.length > 0) {
+        res.locals.errorMessage = globalErrorMessage[0];
+    } else {
+        res.locals.errorMessage = null;
+    }
     next();
 });
 

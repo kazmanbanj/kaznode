@@ -5,7 +5,6 @@ exports.getLogin = (req, res, next) => {
     res.render('ejs/auth/login', {
         docTitle: 'Login',
         path: '/login',
-        isAuthenticated: false
     });
 };
 
@@ -17,8 +16,10 @@ exports.postLogin = (req, res, next) => {
     User.findOne({email: email})
     .then(user => {
         if (!user) {
+            req.flash('error', 'Invalid credentials');
             return res.redirect('/login');
         }
+
         bcrypt.compare(password, user.password)
         .then(doMatch => {
             if (doMatch) {
@@ -29,8 +30,8 @@ exports.postLogin = (req, res, next) => {
                     console.log(err);
                     res.redirect('/');
                 });
-
             } else {
+                req.flash('error', 'Invalid credentials');
                 res.redirect('/login');
             }
         })
@@ -54,7 +55,6 @@ exports.getSignup = (req, res, next) => {
     res.render('ejs/auth/signup', {
         docTitle: 'Signup',
         path: '/signup',
-        isAuthenticated: false
     });
 };
 
@@ -64,11 +64,17 @@ exports.postSignup = (req, res, next) => {
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
 
+    if (!username || !email || !password || !confirmPassword) {
+        req.flash('error', 'Fields cannot be empty.');
+        return res.redirect('/signup');
+    }
+
     User.findOne({
         email: email
     })
     .then(userDoc => {
         if (userDoc) {
+            req.flash('error', 'Email already exists. please pick another one.');
             return res.redirect('/signup');
         }
 
