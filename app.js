@@ -64,25 +64,14 @@ if (!dbUri) {
 
 mongoose.connect(`${dbUri}`)
 .then(result => {
-    User.findById("66e6ee269037c39b55aa593b")
-    .then(user => {
-        if (!user) {
-            const user = new User({
-                name: 'Kaz',
-                email: 'kaz@email.com',
-                cart: {
-                    items: []
-                }
-            });
-            user.save();
-        }
-    });
-
     app.listen(3000);
 })
 .catch(err => {
     console.log(err);
 });
+
+
+
 
 
 
