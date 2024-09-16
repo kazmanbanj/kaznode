@@ -3,8 +3,86 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const errorController = require('./controllers/error');
+
+const User = require('./models/user');
+
+// requiring the routes
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
+
+const dbUri= process.env.MONGO_URI;
+
+// using the expressJs and session
+const app = express();
+const store = new MongoDBStore({
+    uri: dbUri,
+    collection: 'sessions',
+    // expires:
+});
+
+app.set('view engine', 'ejs');
+app.set('views', 'resources/views');
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store
+    // cookie: {}
+}));
+
+// retrieving a user
+app.use((req, res, next) => {
+    User.findById("66e6ee269037c39b55aa593b")
+    .then(user => {
+        req.user = user;
+        next();
+    })
+    .catch(err => console.log(err));
+
+    // next();
+});
+
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+app.use(authRoutes);
+app.use(errorController.get404);
+
+
+if (!dbUri) {
+    throw new Error('Missing required environment variables');
+}
+
+mongoose.connect(`${dbUri}`)
+.then(result => {
+    User.findById("66e6ee269037c39b55aa593b")
+    .then(user => {
+        if (!user) {
+            const user = new User({
+                name: 'Kaz',
+                email: 'kaz@email.com',
+                cart: {
+                    items: []
+                }
+            });
+            user.save();
+        }
+    });
+
+    app.listen(3000);
+})
+.catch(err => {
+    console.log(err);
+});
+
+
 
 // // using sequelize to manage data in the database
 // const sequelize = require('./utils/database');
@@ -19,37 +97,11 @@ const errorController = require('./controllers/error');
 // using mongodb to manage data in the database
 // const mongoConnect = require('./utils/database').mongoConnect;
 
-const User = require('./models/user');
 
-// using the expressJs
-const app = express();
-app.set('view engine', 'ejs');
-app.set('views', 'resources/views');
-
-// used by sequelize
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// retrieving a user
-app.use((req, res, next) => {
-    User.findById("66e6ee269037c39b55aa593b")
-    .then(user => {
-        req.user = user;
-        next();
-    })
-    .catch(err => console.log(err));
-
-    // next();
-})
 
 // used by sequelize
 // app.use('/admin', adminData.routes);
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
-app.use(errorController.get404);
+
 
 // // for sequelize n mysql connections
 // Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
@@ -85,30 +137,3 @@ app.use(errorController.get404);
 // mongoConnect(() => {
 //     app.listen(3000);
 // });
-const dbUrl = process.env.MONGO_URI;
-
-if (!dbUrl) {
-    throw new Error('Missing required environment variables');
-}
-
-mongoose.connect(`${dbUrl}`)
-    .then(result => {
-        User.findById("66e6ee269037c39b55aa593b")
-        .then(user => {
-            if (!user) {
-                const user = new User({
-                    name: 'Kaz',
-                    email: 'kaz@email.com',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        });
-
-        app.listen(3000);
-    })
-    .catch(err => {
-        console.log(err);
-    });

@@ -8,7 +8,8 @@ exports.getAddProduct = (req, res, next) => {
     res.render('ejs/admin/edit-product', {
         docTitle: 'Add product',
         path: '/admin/add-product',
-        editing: false
+        editing: false,
+        isAuthenticated: req.isLoggedIn
     });
 };
 
@@ -49,7 +50,8 @@ exports.getEditProduct = (req, res, next) => {
                 docTitle: 'Edit product',
                 path: '/admin/edit-product',
                 editing: editMode,
-                product: product
+                product: product,
+                isAuthenticated: req.isLoggedIn
             });
         })
         .catch(err => console.log(err));
@@ -88,7 +90,8 @@ exports.getProducts = (req, res, next) => {
         res.render('ejs/admin/products', {
             prods: products,
             docTitle: 'Admin products',
-            path: '/admin/products'
+            path: '/admin/products',
+            isAuthenticated: req.isLoggedIn
         });
     })
     .catch(err => console.log(err));
