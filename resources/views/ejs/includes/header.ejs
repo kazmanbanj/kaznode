@@ -25,21 +25,35 @@
                             </ul>
                         </div>
                     </li>
-                <% } %>
-                <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
-                    <a class="uk-text-large" href="/cart">Cart</a>
-                </li>
-                <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
-                    <a class="uk-text-large" href="/orders">Orders</a>
-                </li>
-                <% if (isAuthenticated) { %>
+                    <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/cart">Cart</a>
+                    </li>
+                    <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/orders">Orders</a>
+                    </li>
                     <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
                         <a class="uk-text-large" href="/admin/products">Admin Products</a>
                     </li>
                 <% } %>
-                <li class="<%= path === '/login' ? 'uk-active' : '' %>">
-                    <a class="uk-text-large" href="/login">Login</a>
-                </li>
+
+                <% if (!isAuthenticated) { %>
+                    <li class="<%= path === '/login' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/login">Login</a>
+                    </li>
+
+                    <li class="<%= path === '/signup' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/signup">Signup</a>
+                    </li>
+                <% } else { %>
+                    <li class="<%= path === '/logout' ? 'uk-active' : '' %>">
+                        <!-- <a class="uk-text-large" href="/logout">Logout</a> -->
+                        <!-- <a class="uk-button uk-button-default" href="/logout">Logout</a> -->
+
+                        <form action="/logout" method="post">
+                            <button class="uk-button uk-button-default">Logout</button>
+                        </form>
+                    </li>
+                <% } %>
             </ul>
             <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
         </div>
@@ -68,24 +82,36 @@
                 <li class="<%= path === '/products' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/products">Products</a>
                 </li>
-            <% } %>
 
-            <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/cart">Cart</a>
-            </li>
-            <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/orders">Orders</a>
-            </li>
+                <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/cart">Cart</a>
+                </li>
+                <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/orders">Orders</a>
+                </li>
 
-            <% if (isAuthenticated) { %>
                 <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/admin/products">Admin Products</a>
                 </li>
             <% } %>
 
-            <li class="<%= path === '/login' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/login">Login</a>
-            </li>
+            <% if (!isAuthenticated) { %>
+                <li class="<%= path === '/login' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/login">Login</a>
+                </li>
+                <li class="<%= path === '/signup' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/signup">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="<%= path === '/logout' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/logout">Logout</a>
+                    <!-- <a class="uk-button uk-button-default" href="/logout">Logout</a> -->
+
+                    <form action="/logout" method="post">
+                        <button class="uk-button uk-button-default">Logout</button>
+                    </form>
+                </li>
+            <% } %>
         </ul>
     </div>
 </div>
