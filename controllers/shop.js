@@ -42,6 +42,10 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+    if (!req.user) {
+        return res.redirect('/login');
+    }
+
     req.user
         .populate('cart.items.productId')
         .then((user) => {
@@ -113,6 +117,10 @@ exports.postCartDeleteProduct = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
+    if (!req.user) {
+        return res.redirect('/login');
+    }
+
     req.user
     .populate('cart.items.productId')
     .then((user) => {

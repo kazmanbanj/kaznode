@@ -5,6 +5,10 @@ const Product = require('../models/product');
 
 
 exports.getAddProduct = (req, res, next) => {
+    if (!req.session.isLoggedIn) {
+        return res.redirect('/login');
+    }
+
     res.render('ejs/admin/edit-product', {
         docTitle: 'Add product',
         path: '/admin/add-product',
