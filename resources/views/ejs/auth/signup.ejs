@@ -1,0 +1,45 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/header.ejs') %>
+
+<form action="/signup" method="POST">
+    <%- include('../includes/error-message.ejs') %>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend">Signup</legend>
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user" for="username"></span>
+                <input class="uk-input" type="text" name="username" aria-label="Not clickable icon" placeholder="Username" required>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: mail" for="email"></span>
+                <input class="uk-input" type="email" name="email" aria-label="Not clickable icon" placeholder="Email" required>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: lock" for="password"></span>
+                <input class="uk-input" type="password" name="password"  aria-label="Not clickable icon" placeholder="Password" required>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: lock" for="confirmPassword"></span>
+                <input class="uk-input" type="password" name="confirmPassword"  aria-label="Not clickable icon" placeholder="Confirm Password" required>
+            </div>
+        </div>
+
+        <button class="uk-button uk-button-primary" type="submit">
+            Signup
+        </button>
+    </fieldset>
+
+</form>
+
+<%- include('../includes/foot.ejs') %>

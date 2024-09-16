@@ -5,10 +5,14 @@ const Product = require('../models/product');
 
 
 exports.getAddProduct = (req, res, next) => {
+    if (!req.session.isLoggedIn) {
+        return res.redirect('/login');
+    }
+
     res.render('ejs/admin/edit-product', {
         docTitle: 'Add product',
         path: '/admin/add-product',
-        editing: false
+        editing: false,
     });
 };
 
@@ -16,7 +20,11 @@ exports.postAddProduct = (req, res, next) => {
     const title = req.body.title;
     const price = req.body.price;
     const description = req.body.description;
-    const imageUrl = req.body.imageUrl;
+    let imageUrl = req.body.imageUrl;
+
+    if (! imageUrl.toLowerCase().includes('https://')) {
+        imageUrl = null;
+    }
 
     const product = new Product({
         title: title,
@@ -49,7 +57,7 @@ exports.getEditProduct = (req, res, next) => {
                 docTitle: 'Edit product',
                 path: '/admin/edit-product',
                 editing: editMode,
-                product: product
+                product: product,
             });
         })
         .catch(err => console.log(err));
@@ -69,6 +77,7 @@ exports.postEditProduct = (req, res, next) => {
         product.price = updatedPrice;
         product.imageUrl = updatedImageUrl;
         product.description = updatedDesc;
+        product.userId = req.user;
 
         return product.save()
     })

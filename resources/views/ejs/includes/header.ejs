@@ -11,6 +11,59 @@
         </div>
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@s">
+                <% if (isAuthenticated) { %>
+                    <li>
+                        <a class="uk-text-large" href="#">Product</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>">
+                                    <a href="/admin/add-product">Add Product</a>
+                                </li>
+                                <li class="<%= path === '/products' ? 'uk-active' : '' %>">
+                                    <a href="/products">Products</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/cart">Cart</a>
+                    </li>
+                    <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/orders">Orders</a>
+                    </li>
+                    <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/admin/products">Admin Products</a>
+                    </li>
+                <% } %>
+
+                <% if (!isAuthenticated) { %>
+                    <li class="<%= path === '/login' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/login">Login</a>
+                    </li>
+
+                    <li class="<%= path === '/signup' ? 'uk-active' : '' %>">
+                        <a class="uk-text-large" href="/signup">Signup</a>
+                    </li>
+                <% } else { %>
+                    <li class="<%= path === '/logout' ? 'uk-active' : '' %>">
+                        <!-- <a class="uk-text-large" href="/logout">Logout</a> -->
+                        <!-- <a class="uk-button uk-button-default" href="/logout">Logout</a> -->
+
+                        <form action="/logout" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="uk-button uk-button-default">Logout</button>
+                        </form>
+                    </li>
+                <% } %>
+            </ul>
+            <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+        </div>
+    </nav>
+</header>
+<div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar">
+        <ul class="uk-nav">
+            <% if (isAuthenticated) { %>
                 <li>
                     <a class="uk-text-large" href="#">Product</a>
                     <div class="uk-navbar-dropdown">
@@ -24,51 +77,43 @@
                         </ul>
                     </div>
                 </li>
+                <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/admin/add-product">Add Product</a>
+                </li>
+                <li class="<%= path === '/products' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/products">Products</a>
+                </li>
+
                 <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/cart">Cart</a>
                 </li>
                 <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/orders">Orders</a>
                 </li>
+
                 <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
                     <a class="uk-text-large" href="/admin/products">Admin Products</a>
                 </li>
-            </ul>
-            <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
-        </div>
-    </nav>
-</header>
-<div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar">
-        <ul class="uk-nav">
-            <li>
-                <a class="uk-text-large" href="#">Product</a>
-                <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>">
-                            <a href="/admin/add-product">Add Product</a>
-                        </li>
-                        <li class="<%= path === '/products' ? 'uk-active' : '' %>">
-                            <a href="/products">Products</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="<%= path === '/admin/add-product' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/admin/add-product">Add Product</a>
-            </li>
-            <li class="<%= path === '/products' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/products">Products</a>
-            </li>
-            <li class="<%= path === '/cart' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/cart">Cart</a>
-            </li>
-            <li class="<%= path === '/orders' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/orders">Orders</a>
-            </li>
-            <li class="<%= path === '/admin/products' ? 'uk-active' : '' %>">
-                <a class="uk-text-large" href="/admin/products">Admin Products</a>
-            </li>
+            <% } %>
+
+            <% if (!isAuthenticated) { %>
+                <li class="<%= path === '/login' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/login">Login</a>
+                </li>
+                <li class="<%= path === '/signup' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/signup">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="<%= path === '/logout' ? 'uk-active' : '' %>">
+                    <a class="uk-text-large" href="/logout">Logout</a>
+                    <!-- <a class="uk-button uk-button-default" href="/logout">Logout</a> -->
+
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="uk-button uk-button-default">Logout</button>
+                    </form>
+                </li>
+            <% } %>
         </ul>
     </div>
 </div>

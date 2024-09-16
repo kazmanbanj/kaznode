@@ -2,6 +2,7 @@
 <%- include('../includes/header.ejs') %>
 
 <form action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST" class="">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <fieldset class="uk-fieldset">
 
         <legend class="uk-legend">Add Product(s)</legend>

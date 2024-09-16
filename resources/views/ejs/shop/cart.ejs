@@ -12,6 +12,7 @@
                         <p><%= p?.productId?.title %> <span class="uk-badge"><%= p?.quantity %></span></p>
 
                         <form action="/cart-delete-item" method="post" class="uk-margin-small-left">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <input type="hidden" name="productId" value="<%= p?.productId?._id %>">
                             <button class="uk-button uk-button-danger" type="submit">Delete</button>
                         </form>
@@ -20,6 +21,7 @@
             </ul>
 
             <form action="/create-order" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button type="submit" class="uk-button uk-button-primary">Order Now!</button>
             </form>
         </div>
