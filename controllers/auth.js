@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const { sendSignupEmail } = require('../mail/mailer');
 
 exports.getLogin = (req, res, next) => {
     res.render('ejs/auth/login', {
@@ -90,7 +91,15 @@ exports.postSignup = (req, res, next) => {
         })
         .then(result => {
             res.redirect('/login');
+            return sendSignupEmail(
+                email,
+                'Welcome to Kaznode!',
+                username
+            );
         })
+        .catch(err => {
+            console.log(err);
+        });
     })
     .catch(err => {
         console.log(err);
